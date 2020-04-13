@@ -31,7 +31,7 @@ int parseLine(char*, char*){
         return 1;
     }
     else if(commandType(in)!= A_COMMAND){
-        out=parseLCommand(in);
+        out=parseACommand(in);
         return 1;
     }
     else if (commandType(in)!=C_COMMAND){
