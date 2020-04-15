@@ -26,15 +26,15 @@ int parseSymbols(char*, in, int lineNumber){
 }
 
 int parseLine(char*, char*){
-    if (commandType(in)!= L_COMMAND){
+    if (commandType(in)== L_COMMAND){
        out= parseLCommand(in);
         return 1;
     }
-    else if(commandType(in)!= A_COMMAND){
+    else if(commandType(in)== A_COMMAND){
         out=parseACommand(in);
         return 1;
     }
-    else if (commandType(in)!=C_COMMAND){
+    else if (commandType(in)==C_COMMAND){
         out=parseCCommand(in);
         return 1;
         
@@ -42,19 +42,33 @@ int parseLine(char*, char*){
     else{
         return 0;
     }//empty lines, comments, etc
-    
 }
 
 int commandType(char* in){
-    constant char *n = in;
-    if (*n =='('){
+    char* L = "(";
+    char* A = "@";
+ 
+    if (strstr(in, L)!=NULL){
         return L_COMMAND;
     }
-    else if (*n =='@'){
+    else if (strstr(in, A)!=NULL){
         return A_COMMAND;
     }
     else{
         return C_COMMAND;
     }
-     return 1;    
+     return 0;    
+}
+
+int parseLCommand(char*in){
+   return 0;
+}
+
+int parseACommand(char* in){
+    return 0;
+
+}
+
+int parseCCommand(int* in){
+    return 0;
 }
