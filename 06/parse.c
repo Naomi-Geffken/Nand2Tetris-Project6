@@ -15,7 +15,7 @@
 #define C_COMMAND 3
 
 
-int parseSymbols(char*, in, int lineNumber){
+int parseSymbols(char* in, int lineNumber){
  if (commandType(in)=="L_COMMAND")   //if (commandType(in)==1)
      return lineNumber+1;
  else{  //command is a label
