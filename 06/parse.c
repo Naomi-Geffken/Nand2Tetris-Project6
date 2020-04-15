@@ -46,9 +46,15 @@ int parseLine(char*, char*){
 }
 
 int commandType(char* in){
-    return 1;
-    
-    
-    
-    
+    constant char *n = in;
+    if (*n =='('){
+        return L_COMMAND;
+    }
+    else if (*n =='@'){
+        return A_COMMAND;
+    }
+    else{
+        return C_COMMAND;
+    }
+     return 1;    
 }
