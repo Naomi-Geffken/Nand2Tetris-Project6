@@ -1,10 +1,3 @@
-//
-//  assemble.c
-//  06
-//
-//  Created by Chandra Adhikari on 4/13/20.
-//  Copyright © 2020 Chandra Adhikari. All rights reserved.
-//
 #include <stdio.h>
 #include <stdlib.h>
 #include "map.h"
@@ -15,14 +8,18 @@
 #define C_COMMAND 3
 
 
-int parseSymbols(char*, in, int lineNumber){
+map symbolMap=NULL;
+
+
+int parseSymbols(char* in, int lineNumber){
+    symbolMap=createMap(1000);
  if (commandType(in)=="L_COMMAND")   //if (commandType(in)==1)
      return lineNumber+1;
  else{  //command is a label
      insertKey(symbolMap, in, lineNumber);
      
  }
-    
+    return 0;
 }
 
 int parseLine(char* in, char* out){  // (lineRaw, lineBinary)
@@ -36,7 +33,7 @@ int parseLine(char* in, char* out){  // (lineRaw, lineBinary)
     }
     else if (commandType(in)==C_COMMAND){
         out=parseCCommand(in);
-        return out;  
+        return out;
     }
     else{
         return 0;
@@ -58,7 +55,7 @@ int commandType(char* in){
         return C_COMMAND;
     } else {
         return 0;
-	}
+    }
 }
 
 int parseACommand(char* in){ // turn A_Command into binary representation
@@ -73,5 +70,3 @@ int parseCCommand(int* in){ // turn C_command into binary representation
 int parseLCommand(char*in){ // turn into binary representation
    return 0;
 }
-
-

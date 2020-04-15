@@ -17,7 +17,7 @@
 //global variable,
 map compMap=NULL;
 map jumMap=NULL;
-map symbolMap=NULL;
+// symbolMap=NULL;
 map despMap=NULL;
 
 int parseSymbols(char*, char*);
@@ -35,7 +35,7 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     despMap=createMap(10);
     compMap=createMap(30); //new maps and no value inside it
     jumMap=createMap(10);
-    symbolMap=createMap(1000);
+   // symbolMap=createMap(1000);
     
     //first step is to go into a file, and create a symbol table of that file
     
@@ -68,19 +68,19 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     while(!feof(inFile)){
         if(parseLine(lineRaw, lineBinary)){ //lineRaw= " M+1
 //--->101001010000// binary equivalent    }
-        fpust(lineBinary, outFile); //maybe I need to add '\0' at the end of the line??
-        fpust("\0",outFile);
+        fputs(lineBinary, outFile); //maybe I need to add '\0' at the end of the line??
+        fputs("\0",outFile);
         }
         else continue;
         //second pass
         
     }
-    fclose(inFile);
+     fclose(inFile);
      fclose(outFile);
     
     
     freeMap(compMap);
     freeMap(jumMap);
-    freeMap(symbolMap);
+   // freeMap(symbolMap);
     return 0;
 }
