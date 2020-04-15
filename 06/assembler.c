@@ -21,13 +21,14 @@ map despMap=NULL;
 int parseSymbols(char*, char*);
 int parseLine(char*, char*);
 
-int main(int argc, const char** argv) {    //./assembler add.asm add.hack
+int main(int argc, const char* argv) {    //./assembler add.asm add.hack
     
-    char* inFile=argv[1];
-    char* outFile=argv[2];
+
+    const char* inF=argv[1];
+    const char* outF=argv[2];
     
-    FILE * inFile=fopen(inputFile, "r"); //creating a input file in a read mode
-    FILE * inFile=fopen(inputFile, "w"); //creating a output file and write there
+    FILE *inFile=fopen(inF, "r"); //creating a input file in a read mode
+    FILE *outFile=fopen(outF, "w"); //creating a output file and write there
 
     
     despMap=createMap(10);
