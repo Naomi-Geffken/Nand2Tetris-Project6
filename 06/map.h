@@ -43,5 +43,8 @@ char* lookupIndex(map aMap, int i) ;
 char* lookupKey(map aMap, char *searchKey);
 int insertKey(map aMap, char* key, char *value);
 
+// int main(int argc, const char **argv);
 
 #endif
+
+

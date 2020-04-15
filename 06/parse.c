@@ -13,16 +13,18 @@ map symbolMap=NULL;
 
 int parseSymbols(char* in, int lineNumber){
     symbolMap=createMap(1000);
- if (commandType(in)=="L_COMMAND")   //if (commandType(in)==1)
-     return lineNumber+1;
- else{  //command is a label
-     insertKey(symbolMap, in, lineNumber);
+    if (commandType(in)=="L_COMMAND")   //if (commandType(in)==1)
+        return lineNumber+1;
+    else{  //command is a label
+        insertKey(symbolMap, in, lineNumber);
 
- }
-    return 0;
+    }
+        return 0;
 }
 
 int parseLine(char* in, char* out){  // (lineRaw, lineBinary)
+    out = 0;
+    return out;
     if (commandType(in)== L_COMMAND){
        out= parseLCommand(in);
        return out;

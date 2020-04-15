@@ -147,3 +147,7 @@ int insertKey(map aMap, char* key, char *value) {
 
 
 }
+
+// int main(int argc, const char **argv) {
+
+//}
