@@ -12,6 +12,8 @@
 
 
 
+
+
 //global variable,
 map compMap=NULL;
 map jumMap=NULL;
@@ -21,13 +23,13 @@ map despMap=NULL;
 int parseSymbols(char*, char*);
 int parseLine(char*, char*);
 
-int main(int argc, const char** argv) {    //./assembler add.asm add.hack
+int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     
-    char* inFile=argv[1];
-    char* outFile=argv[2];
+    const char* inF=argv[1];
+    const char* outF=argv[2];
     
-    FILE * inFile=fopen(inputFile, "r"); //creating a input file in a read mode
-    FILE * inFile=fopen(inputFile, "w"); //creating a output file and write there
+    FILE * inFile= fopen(inF, "r"); //creating a input file in a read mode
+    FILE * outFile= fopen(outF, "w"); //creating a output file and write there
 
     
     despMap=createMap(10);
@@ -65,16 +67,16 @@ int main(int argc, const char** argv) {    //./assembler add.asm add.hack
     
     while(!feof(inFile)){
         if(parseLine(lineRaw, lineBinary)){ //lineRaw= " M+1
-            //--->101001010000// binary equivalent    }
-            fpust(lineBinary, outFile); //maybe I need to add '\0' at the end of the line??
-            fpust("\0",outFile);
+//--->101001010000// binary equivalent    }
+        fpust(lineBinary, outFile); //maybe I need to add '\0' at the end of the line??
+        fpust("\0",outFile);
         }
         else continue;
         //second pass
         
     }
     fclose(inFile);
-    fclose(outFile);
+     fclose(outFile);
     
     
     freeMap(compMap);
