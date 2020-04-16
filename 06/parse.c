@@ -23,8 +23,6 @@ int parseSymbols(char* in, int lineNumber){
 }
 
 int parseLine(char* in, char* out){  // (lineRaw, lineBinary)
-    out = 0;
-    return out;
     if (commandType(in)== L_COMMAND){
        out= parseLCommand(in);
        return out;
@@ -65,25 +63,32 @@ int parseACommand(char* in){ // turn A_Command into binary representation
 }
 
 int parseCCommand(char* in){ // turn C_command into binary representation
+    // opcode + 00
+    int binaryC_Command = int[16];
+    binaryC_Command[0]=1
+    binaryC_Command[1]=0
+    binaryC_Command[2]=0
+    
+    // break in into 2-3 parts
+        // call code.c corresponding binary
+    // return binary
+
     char str[] = in;
 	int init_size = strlen(str);
-	char delim[] = ";";
+	char delim[] = {"=",";"};
 
 	char *ptr = strtok(str, delim);
 
 	while(ptr != NULL)
 	{
-		printf("'%s'\n", ptr);
 		ptr = strtok(NULL, delim);
 	}
 
-	for (int i = 0; i < init_size; i++)
-	{
-		printf("%d ", str[i]); 
-	}
+	dest()
 	printf("\n");
 
 	return 0;
+    // 
 }
 
 int parseLCommand(char*in){ // turn into binary representation

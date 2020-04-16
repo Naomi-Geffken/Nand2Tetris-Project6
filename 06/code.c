@@ -35,10 +35,8 @@ extern map compMap;
 extern map jumpMap;
 
 
-void dest (char* in, char* out){
+void dest (char* in, char* out){ 
    out= lookupKey(destMap, in); //out=get(in)
-
-
 }
 
 void comp (char* in, char* out){
@@ -58,13 +56,11 @@ void initJumpMap(){
     insertKey(jumpMap, "JNE", "101");
     insertKey(jumpMap, "JLE", "110");
     insertKey(jumpMap, "JMP", "111");
-
 }
 
 
 
-void initcompMap(){
-
+void initcompMap(){}
     insertKey(compMap, "0", "101010");
     insertKey(compMap, "1", "111111");
     insertKey(compMap, "-1", "111010");
@@ -101,11 +97,6 @@ void initcompMap(){
           insertKey(compMap, "D|A", "010101");
           
        insertKey(compMap, "D|M", "010101");
-        
-       
-    
-
-
 }
 
 
@@ -124,11 +115,28 @@ void initDestMap(){
 
 
 void initJSymbolMap(){
-
-    
-    
-    
-    
-
+    insertKey(symbolMap, "SP", "0");
+    insertKey(symbolMap, "LCL", "1");
+    insertKey(symbolMap, "ARG", "2");
+    insertKey(symbolMap, "THIS", "3");
+    insertKey(symbolMap, "THAT", "4");
+    insertKey(symbolMap, "RO", "0");
+    insertKey(symbolMap, "R1", "1");
+    insertKey(symbolMap, "R2", "2");
+    insertKey(symbolMap, "R3", "3");
+    insertKey(symbolMap, "R4", "4");
+    insertKey(symbolMap, "R5", "5");
+    insertKey(symbolMap, "R6", "6");
+    insertKey(symbolMap, "R7", "7");
+    insertKey(symbolMap, "R8", "8");
+    insertKey(symbolMap, "R9", "9");
+    insertKey(symbolMap, "R10", "10");
+    insertKey(symbolMap, "R11", "11");
+    insertKey(symbolMap, "R12", "12");
+    insertKey(symbolMap, "R13", "13");
+    insertKey(symbolMap, "R14", "14");
+    insertKey(symbolMap, "R15", "15");
+    insertKey(symbolMap, "SCREEN", "16384");
+    insertKey(symbolMap, "KBD", "24576");
 }
 
