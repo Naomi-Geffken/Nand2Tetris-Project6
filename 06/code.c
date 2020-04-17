@@ -33,10 +33,12 @@ extern map destMap;
 extern map compMap;
 
 extern map jumpMap;
+extern map symbolMap;
 
-
-void dest (char* in, char* out){ 
+void dest (char* in, char* out){
    out= lookupKey(destMap, in); //out=get(in)
+
+
 }
 
 void comp (char* in, char* out){
@@ -45,6 +47,9 @@ void comp (char* in, char* out){
 
 void jump (char* in, char* out){
     out= lookupKey(jumpMap, in);
+    //where the jump part is actually in
+    //look for ;
+    //create a string of size 3
 }
 
 void initJumpMap(){
@@ -56,33 +61,35 @@ void initJumpMap(){
     insertKey(jumpMap, "JNE", "101");
     insertKey(jumpMap, "JLE", "110");
     insertKey(jumpMap, "JMP", "111");
+
 }
 
 
 
-void initcompMap(){}
+void initcompMap(){
+
     insertKey(compMap, "0", "101010");
     insertKey(compMap, "1", "111111");
     insertKey(compMap, "-1", "111010");
     insertKey(compMap, "D", "001100");
-       insertKey(compMap, "A", "110000");
-       insertKey(compMap, "!D", "001101");
+    insertKey(compMap, "A", "110000");
+    insertKey(compMap, "!D", "001101");
        
     insertKey(compMap, "M", "110000");
-       insertKey(compMap, "!A", "110001");
-       insertKey(compMap, "!M", "110001");
+    insertKey(compMap, "!A", "110001");
+    insertKey(compMap, "!M", "110001");
        
     insertKey(compMap, "-D", "001111");
-       insertKey(compMap, "-A", "110011");
-       insertKey(compMap, "-M", "110011");
+    insertKey(compMap, "-A", "110011");
+    insertKey(compMap, "-M", "110011");
        
     insertKey(compMap, "D+1", "011111");
-       insertKey(compMap, "A+1", "110111");
-       insertKey(compMap, "M+1", "110111");
+    insertKey(compMap, "A+1", "110111");
+    insertKey(compMap, "M+1", "110111");
        
     insertKey(compMap, "D-1", "001110");
-       insertKey(compMap, "A-1", "110010");
-       insertKey(compMap, "M-1", "110010");
+    insertKey(compMap, "A-1", "110010");
+    insertKey(compMap, "M-1", "110010");
     
        insertKey(compMap, "D+A", "000010");
           insertKey(compMap, "D+M", "000010");
@@ -97,6 +104,11 @@ void initcompMap(){}
           insertKey(compMap, "D|A", "010101");
           
        insertKey(compMap, "D|M", "010101");
+        
+       
+    
+
+
 }
 
 
@@ -115,6 +127,8 @@ void initDestMap(){
 
 
 void initJSymbolMap(){
+
+  
     insertKey(symbolMap, "SP", "0");
     insertKey(symbolMap, "LCL", "1");
     insertKey(symbolMap, "ARG", "2");
@@ -138,5 +152,9 @@ void initJSymbolMap(){
     insertKey(symbolMap, "R15", "15");
     insertKey(symbolMap, "SCREEN", "16384");
     insertKey(symbolMap, "KBD", "24576");
+    
+    
+    
+
 }
 

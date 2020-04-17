@@ -65,7 +65,7 @@ int parseACommand(char* in){ // turn A_Command into binary representation
    const char ch = '@';
    char *ret;
    int binary;
-   int bin_A
+    int bin_A;
    int i = 0;
 
    ret = strchr(in, ch);
@@ -75,10 +75,10 @@ int parseACommand(char* in){ // turn A_Command into binary representation
    
    // convert val to binary and return val.
    while (val > 0){
-        binary = val % 2; 
+        binary = val % 2;
         bin_A += binary * pow(10, i);
-        val = val / 2;   
-        i++; 
+        val = val / 2;
+        i++;
    }
     return bin_A;
 }
@@ -90,21 +90,21 @@ int parseCCommand(char* in){ // turn C_command into binary representation
     // break in into 2-3 parts
     // call code.c corresponding binary
     // return binary
+char *str = in;
+    int init_size = strlen(str);
+    char delim[] = {"=",";"};
 
-	int init_size = strlen(str);
-	char delim[] = {"=",";"};
+    char *ptr = strtok(str, delim);
 
-	char *ptr = strtok(str, delim);
+    while(ptr != NULL)
+    {
+        ptr = strtok(NULL, delim);
+    }
 
-	while(ptr != NULL)
-	{
-		ptr = strtok(NULL, delim);
-	}
+    dest();
+    printf("\n");
 
-	dest();
-	printf("\n");
-
-	return 0;
+    return 0;
 }
 
 int parseLCommand(char*in){ // turn into binary representation
