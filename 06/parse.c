@@ -72,13 +72,13 @@ int parseACommand(char* in){ // turn A_Command into binary representation
    char **ret2 = (ret + 1);
    int val = atoi(ret +1);
    // printf("String after |%c| is - |%s|\n", ch, (ret2));
-   
+
    // convert val to binary and return val.
    while (val > 0){
-        binary = val % 2; 
+        binary = val % 2;
         bin_A += binary * pow(10, i);
-        val = val / 2;   
-        i++; 
+        val = val / 2;
+        i++;
    }
     return bin_A;
 }
@@ -97,21 +97,21 @@ int parseCCommand(char* in){ // turn C_command into binary representation
 
     // call code.c corresponding binary
     // return binary
+char *str = in;
+    int init_size = strlen(str);
+    char delim[] = {"=",";"};
 
-	int init_size = strlen(str);
-	char delim[] = {"=",";"};
+    char *ptr = strtok(str, delim);
 
-	char *ptr = strtok(str, delim);
+    while(ptr != NULL)
+    {
+        ptr = strtok(NULL, delim);
+    }
 
-	while(ptr != NULL)
-	{
-		ptr = strtok(NULL, delim);
-	}
+    dest();
+    printf("\n");
 
-	dest();
-	printf("\n");
-
-	return 0;
+    return 0;
 }
 
 int parseLCommand(char*in){ // turn into binary representation
