@@ -9,9 +9,8 @@
 #include <stdlib.h>
 #include "map.h"
 #include <string.h>
-
-
-
+#include "parse.c"
+#include "code.c"
 
 
 //global variable,
@@ -19,9 +18,9 @@ map compMap=NULL;
 map jumMap=NULL;
 // symbolMap=NULL;
 map despMap=NULL;
-
 int parseSymbols(char*, char*);
 int parseLine(char*, char*);
+
 
 int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     printf("start of file");
@@ -31,7 +30,7 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     FILE * inFile= fopen(inF, "r"); //creating a input file in a read mode
     FILE * outFile= fopen(outF, "w"); //creating a output file and write there
 
-    
+   
     despMap=createMap(10);
     compMap=createMap(30); //new maps and no value inside it
     jumMap=createMap(10);

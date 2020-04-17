@@ -59,18 +59,17 @@ int commandType(char* in){
 }
 
 int parseACommand(char* in){ // turn A_Command into binary representation
+    // Isolate everythin after @ symbol
+
     return 0;
 }
 
 int parseCCommand(char* in){ // turn C_command into binary representation
+    char* temp_in = in;
+
     // opcode + 00
-    int binaryC_Command = int[16];
-    binaryC_Command[0]=1
-    binaryC_Command[1]=0
-    binaryC_Command[2]=0
-    
     // break in into 2-3 parts
-        // call code.c corresponding binary
+    // call code.c corresponding binary
     // return binary
 
     char str[] = in;
@@ -84,11 +83,10 @@ int parseCCommand(char* in){ // turn C_command into binary representation
 		ptr = strtok(NULL, delim);
 	}
 
-	dest()
+	dest();
 	printf("\n");
 
 	return 0;
-    // 
 }
 
 int parseLCommand(char*in){ // turn into binary representation
