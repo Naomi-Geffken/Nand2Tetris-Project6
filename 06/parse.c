@@ -77,7 +77,7 @@ int parseACommand(char* in){ // turn A_Command into binary representation
    while (val > 0){
         binary = val % 2; 
         bin_A += binary * pow(10, i);
-        val = val / 2; 
+        val = val / 2;   
         i++; 
    }
     return bin_A;
