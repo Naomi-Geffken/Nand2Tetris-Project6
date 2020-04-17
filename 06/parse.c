@@ -65,7 +65,7 @@ int parseACommand(char* in){ // turn A_Command into binary representation
    const char ch = '@';
    char *ret;
    int binary;
-   int bin_A
+   int bin_A;
    int i = 0;
 
    ret = strchr(in, ch);
@@ -85,9 +85,16 @@ int parseACommand(char* in){ // turn A_Command into binary representation
 
 int parseCCommand(char* in){ // turn C_command into binary representation
     char* temp_in = in;
-
+    char* jmp;
+    jmp = strchr(in, ";");
     // opcode + 00
     // break in into 2-3 parts
+    // break into dest
+
+
+    // break into comp
+    // break into jump
+
     // call code.c corresponding binary
     // return binary
 
