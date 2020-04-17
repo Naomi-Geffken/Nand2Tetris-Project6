@@ -65,9 +65,41 @@ int parseACommand(char* in){ // turn A_Command into binary representation
     return 0;
 }
 
+<<<<<<< Updated upstream
 int parseCCommand(int* in){ // turn C_command into binary representation
     
     return 0;
+=======
+int parseCCommand(char* in){ // turn C_command into binary representation
+    char* temp_in = in;
+    char* jmp;
+    jmp = strchr(in, ";");
+    // opcode + 00
+    // break in into 2-3 parts
+    // break into dest nn
+
+
+    // break into comp
+    // break into jump
+
+    // call code.c corresponding binary
+    // return binary
+
+	int init_size = strlen(str);
+	char delim[] = {"=",";"};
+
+	char *ptr = strtok(str, delim);
+
+	while(ptr != NULL)
+	{
+		ptr = strtok(NULL, delim);
+	}
+
+	dest();
+	printf("\n");
+
+	return 0;
+>>>>>>> Stashed changes
 }
 
 int parseLCommand(char*in){ // turn into binary representation
