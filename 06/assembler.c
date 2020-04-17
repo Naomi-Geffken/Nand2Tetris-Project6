@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "map.h"
 #include <string.h>
-#include "map.c"
+
 //#include "parse.c"
 
 
@@ -18,9 +18,9 @@
 
 //global variable,
 map compMap=NULL;
-map jumMap=NULL;
-// symbolMap=NULL;
-map despMap=NULL;
+map jumpMap=NULL;
+map symbolMap=NULL;
+map destMap=NULL;
 
 int parseSymbols(char*, char*);
 int parseLine(char*, char*);
@@ -34,10 +34,10 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     FILE * outFile= fopen(outF, "w"); //creating a output file and write there
 
     
-    despMap=createMap(10);
+    destMap=createMap(10);
     compMap=createMap(30); //new maps and no value inside it
-    jumMap=createMap(10);
-   // symbolMap=createMap(1000);
+    jumpMap=createMap(10);
+   symbolMap=createMap(1000);
     
     //first step is to go into a file, and create a symbol table of that file
     
@@ -82,7 +82,7 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     
     
     freeMap(compMap);
-    freeMap(jumMap);
+    freeMap(jumpMap);
    // freeMap(symbolMap);
     return 0;
 }
