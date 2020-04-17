@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "map.h"
 #include <string.h>
+#include <math.h>
 
 #define L_COMMAND 1
 #define A_COMMAND 2
@@ -60,8 +61,26 @@ int commandType(char* in){
 
 int parseACommand(char* in){ // turn A_Command into binary representation
     // Isolate everythin after @ symbol
+    // const char str[] = "chandra@21";
+   const char ch = '@';
+   char *ret;
+   int binary;
+   int bin_A
+   int i = 0;
 
-    return 0;
+   ret = strchr(in, ch);
+   char **ret2 = (ret + 1);
+   int val = atoi(ret +1);
+   // printf("String after |%c| is - |%s|\n", ch, (ret2));
+   
+   // convert val to binary and return val.
+   while (val > 0){
+        binary = val % 2; 
+        bin_A += binary * pow(10, i);
+        val = val / 2; 
+        i++; 
+   }
+    return bin_A;
 }
 
 int parseCCommand(char* in){ // turn C_command into binary representation
@@ -72,7 +91,6 @@ int parseCCommand(char* in){ // turn C_command into binary representation
     // call code.c corresponding binary
     // return binary
 
-    char str[] = in;
 	int init_size = strlen(str);
 	char delim[] = {"=",";"};
 
