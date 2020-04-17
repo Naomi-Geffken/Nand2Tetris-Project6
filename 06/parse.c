@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "map.h"
+
 #include <string.h>
 #include <math.h>
 
@@ -9,11 +10,11 @@
 #define C_COMMAND 3
 
 
-map symbolMap=NULL;
-
+//map symbolMap=NULL;
+extern map symbolMap;
 
 int parseSymbols(char* in, int lineNumber){
-    symbolMap=createMap(1000);
+    //symbolMap=createMap(1000);
     if (commandType(in)=="L_COMMAND")   //if (commandType(in)==1)
         return lineNumber+1;
     else{  //command is a label
