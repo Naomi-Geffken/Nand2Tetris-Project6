@@ -67,8 +67,8 @@ void initJumpMap(){
 
 
 
-void initcompMap(){
-
+void initCompMap(){
+    printf("insideCompMap");
     insertKey(compMap, "0", "101010");
     insertKey(compMap, "1", "111111");
     insertKey(compMap, "-1", "111010");

@@ -112,14 +112,17 @@ char* lookupIndex(map aMap, int i) {
 // otherwise returns NULL if the key is not found
 //
 char* lookupKey(map aMap, char *searchKey) {
-
+    printf("inside lookupKey \n");
     int index = containsKey(aMap, searchKey);
-
+    printf("inside lookupKey--after index, index is %d \n", index);
     if(index >= 0 ) {
-          return lookupIndex(aMap, index);
+        printf("inside lookupKey: in if-statement \n");
+        return lookupIndex(aMap, index);
     } else {
-          return NULL;
+        printf("inside lookupKey: in else-statement \n");
+        return NULL;
     }
+    printf("inside lookupKey: end of method \n");
 }
 
 

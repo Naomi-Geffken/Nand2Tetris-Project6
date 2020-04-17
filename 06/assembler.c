@@ -24,8 +24,15 @@ map destMap=NULL;
 
 int parseSymbols(char*, char*);
 int parseLine(char*, char*);
+int parseACommand(char* in);
+char parseCCommand(char* in);
+void initJumpMap();
+void initCompMap();
+void initDestMap();
+int containsKey(map aMap, char *searchKey);
 
 int main(int argc, const char **argv) {    //./assembler add.asm add.hack
+    
     
     const char* inF=argv[1];
     const char* outF=argv[2];
@@ -37,9 +44,23 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     destMap=createMap(10);
     compMap=createMap(30); //new maps and no value inside it
     jumpMap=createMap(10);
-   symbolMap=createMap(1000);
-    
+    symbolMap=createMap(1000);
+
+    initJumpMap();
+    initCompMap();
+    initDestMap();
+
+    printf("inside file");
+    // Test C Command
+    char* f = "M=D";
+    // int d = 0;
+    // d = containsKey(compMap, f);
+    char out3;
+    out3 = parseCCommand(f);
+    printf("this is our looked up key: %s", out3);
     //first step is to go into a file, and create a symbol table of that file
+    fputs(out3, outFile); //maybe I need to add '\0' at the end of the line??
+    fputs("\0",outFile);
     
     char lineRaw[200]; //assumptions that the line we read is less than 200 characters
     //has a new line
@@ -52,13 +73,11 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     
     int LineNumber=0 ;   //line number associates to that label
     
-    while(!feof(inFile)){ //feof gives the end of end file
-        
-    //make the first pass and find all labels.
-        parseSymbols(lineRaw, LineNumber); // put the label in the symbolsdMap wih line number
-        //if C or A instruction, increment LineNumber
-        fgets(lineRaw, 200, inFile);
-        
+    while(!feof(inFile)){ //feof gives the end of end file 
+         //make the first pass and find all labels.
+         parseSymbols(lineRaw, LineNumber); // put the label in the symbolsdMap wih line number
+         //if C or A instruction, increment LineNumber
+         fgets(lineRaw, 200, inFile);
     } //done with the first pass;
     //at the end of inFile
     
@@ -68,21 +87,21 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     fgets(lineRaw, 200, inFile);
     
     while(!feof(inFile)){
-        if(parseLine(lineRaw, lineBinary)){ //lineRaw= " M+1
-//--->101001010000// binary equivalent    }
-        fputs(lineBinary, outFile); //maybe I need to add '\0' at the end of the line??
-        fputs("\0",outFile);
-        }
-        else continue;
-        //second pass
+         if(parseLine(lineRaw, lineBinary)){ //lineRaw= " M+1
+         //--->101001010000// binary equivalent    }
+         fputs(lineBinary, outFile); //maybe I need to add '\0' at the end of the line??
+         fputs("\0",outFile);
+         }
+         else continue;
+         //second pass
         
     }
-     fclose(inFile);
-     fclose(outFile);
+    fclose(inFile);
+    fclose(outFile);
     
     
     freeMap(compMap);
     freeMap(jumpMap);
-   // freeMap(symbolMap);
+    // freeMap(symbolMap);
     return 0;
 }
