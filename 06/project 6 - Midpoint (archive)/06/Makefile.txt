@@ -1,0 +1,12 @@
+exec: assembler.o code.o map.o parse.o
+	gcc -o exec assembler.o code.o map.o parse.o
+
+assembler.o: assembler.c
+	gcc -c assembler.c
+
+code.o: code.c
+	gcc -c code.c
+
+parse.o: parse.c
+	gcc -c parse.c
+

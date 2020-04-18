@@ -83,18 +83,18 @@ void freeMap(map currentMap) {
 // otherwise returns -1 if the key is not found
 //
 int containsKey(map aMap, char *searchKey) {
-    printf("inside contains key, search key is: %s\n", searchKey);
+    // printf("inside contains key, search key is: %s\n", searchKey);
     int i;
     // linear search for the key
     for(i=0; i < aMap->mapSize; i++) {
-        printf("inside containsKey for-loop\n");
+        // printf("inside containsKey for-loop\n");
         if(strcmp(aMap->pairs[i].key, searchKey) == 0) {
             // key is found at location i
-            printf("inside containsKey, key found!\n");
+            // printf("inside containsKey, key found!\n");
             return i;
         }
     }
-    printf("inside containsKey, key NOT found!\n");
+    // printf("inside containsKey, key NOT found!\n");
     // not found, return -1
     return -1;
 }
@@ -114,17 +114,17 @@ char* lookupIndex(map aMap, int i) {
 // otherwise returns NULL if the key is not found
 //
 char* lookupKey(map aMap, char *searchKey) {
-    printf("inside lookupKey \n");
+    // printf("inside lookupKey \n");
     int index = containsKey(aMap, searchKey);
-    printf("inside lookupKey--after index, index is %d \n", index);
+    // printf("inside lookupKey--after index, index is %d \n", index);
     if(index >= 0 ) {
-        printf("inside lookupKey: in if-statement \n");
+        // printf("inside lookupKey: in if-statement \n");
         return lookupIndex(aMap, index);
     } else {
-        printf("inside lookupKey: in else-statement \n");
+        // printf("inside lookupKey: in else-statement \n");
         return NULL;
     }
-    printf("inside lookupKey: end of method \n");
+    // printf("inside lookupKey: end of method \n");
 }
 
 
