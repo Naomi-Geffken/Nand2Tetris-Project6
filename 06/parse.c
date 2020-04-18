@@ -72,13 +72,21 @@ int parseACommand(char* in){ // turn A_Command into binary representation
     const char ch = '@';
     char *ret;
     ret = strchr(in, ch);
-
+    char *VAL[255];
+    int val=0;
+    printf("ret is: %s\n", ret);
     // [to add: check if ret+1 is in symbol table]
-    // if yes: return value, and call atoi on that value
-    // otherwise: call atoi on ret+1
-  
-    int val;
-    val= atoi(ret+1); 
+    if(containsKey(symbolMap, ret+1)!=-1){    // if yes: return value, and call atoi on that value
+        printf("inside if-statement");
+        strcpy(VAL, lookupKey(symbolMap, ret+1));
+        printf("VAL is: %d", VAL);
+        val=atoi(VAL);
+    }
+    else{  // otherwise: call atoi on ret+1
+        printf("inside else statement\n");
+        val= atoi(ret+1); 
+    }
+ 
 
     int c, d, count;
     char *pointer;

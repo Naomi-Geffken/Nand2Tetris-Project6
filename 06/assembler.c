@@ -29,6 +29,7 @@ char parseCCommand(char* in);
 void initJumpMap();
 void initCompMap();
 void initDestMap();
+void initSymbolMap();
 int containsKey(map aMap, char *searchKey);
 void trim(char*);
 int ParseC(char* in);
@@ -51,6 +52,7 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     initJumpMap();
     initCompMap();
     initDestMap();
+    initSymbolMap();
 
 
     const char str[] = "@32767";
@@ -87,6 +89,8 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
         else{
             //parseSymbols
             // if C or A instruction, increment LineNumber
+            strtok(lineRaw, "//");
+            trim(lineRaw);
             fgets(lineRaw, 200, inFile);
             trim(lineRaw);
         }
@@ -111,6 +115,8 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
             trim(lineRaw);
 	    }
         else{
+            strtok(lineRaw, "//");
+            trim(lineRaw);
             char* binary_out=parseLine(lineRaw, lineBinary); //lineRaw= " M+1
             printf("binary_out is: %s\n", binary_out);
             fprintf(outFile,"%s\n",binary_out);

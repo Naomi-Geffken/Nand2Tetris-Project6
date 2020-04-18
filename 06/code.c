@@ -114,7 +114,7 @@ void initDestMap(){
 }
 
 
-void initJSymbolMap(){
+void initSymbolMap(){
 
   
     insertKey(symbolMap, "SP", "0");
@@ -122,7 +122,7 @@ void initJSymbolMap(){
     insertKey(symbolMap, "ARG", "2");
     insertKey(symbolMap, "THIS", "3");
     insertKey(symbolMap, "THAT", "4");
-    insertKey(symbolMap, "RO", "0");
+    insertKey(symbolMap, "R0", "0");
     insertKey(symbolMap, "R1", "1");
     insertKey(symbolMap, "R2", "2");
     insertKey(symbolMap, "R3", "3");

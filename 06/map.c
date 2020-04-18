@@ -83,16 +83,18 @@ void freeMap(map currentMap) {
 // otherwise returns -1 if the key is not found
 //
 int containsKey(map aMap, char *searchKey) {
-
+    printf("inside contains key, search key is: %s\n", searchKey);
     int i;
     // linear search for the key
     for(i=0; i < aMap->mapSize; i++) {
+        printf("inside containsKey for-loop\n");
         if(strcmp(aMap->pairs[i].key, searchKey) == 0) {
             // key is found at location i
+            printf("inside containsKey, key found!\n");
             return i;
         }
     }
-
+    printf("inside containsKey, key NOT found!\n");
     // not found, return -1
     return -1;
 }
