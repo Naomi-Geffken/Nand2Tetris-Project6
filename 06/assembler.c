@@ -78,14 +78,14 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     int LineNumber=0 ;   //line number associates to that label
     fgets(lineRaw, 200, inFile);//reads one strings from a file ;  output destination with the maximum value, and inputfile
     trim(lineRaw);
-    while(!feof(inFile)){ //feof gives the end of end file 
+    while(!feof(inFile)){ //feof gives the end of end file
         //printf("lineRaw: [%s]\n", lineRaw);
-        printf("lineRaw: [%s]\n", lineRaw);
+       // printf("lineRaw: [%s]\n", lineRaw);
         if(lineRaw[0]=='/'||lineRaw[0]=='\0'){
-            printf("help\n");
+           // printf("help\n");
             fgets(lineRaw, 200, inFile);
             trim(lineRaw);
-	    }
+        }
         else{
             //parseSymbols
             // if C or A instruction, increment LineNumber
@@ -109,19 +109,19 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     
     fgets(lineRaw, 200, inFile);//reads one strings from a file ;  output destination with the maximum value, and inputfile
     trim(lineRaw);
-    while(!feof(inFile)){ //feof gives the end of end file 
+    while(!feof(inFile)){ //feof gives the end of end file
         //printf("lineRaw: [%s]\n", lineRaw);
-        printf("lineRaw: [%s]\n", lineRaw);
+        //printf("lineRaw: [%s]\n", lineRaw);
         if(lineRaw[0]=='/'||lineRaw[0]=='\0'){
-            printf("skip\n");
+           // printf("skip\n");
             fgets(lineRaw, 200, inFile);
             trim(lineRaw);
-	    }
+        }
         else{
             strtok(lineRaw, "//");
             trim(lineRaw);
             char* binary_out=parseLine(lineRaw, lineBinary); //lineRaw= " M+1
-            printf("binary_out is: %s\n", binary_out);
+            //printf("binary_out is: %s\n", binary_out);
             fprintf(outFile,"%s\n",binary_out);
 
             //fputs(binary_out, outFile); //maybe I need to add '\0' at the end of the line??
@@ -140,7 +140,7 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     //     fputs('\0',outFile);
     //}
     //    else continue;
-    //second pass       
+    //second pass
     //}
     fclose(inFile);
     fclose(outFile);

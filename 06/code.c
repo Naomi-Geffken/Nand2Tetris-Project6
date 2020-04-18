@@ -2,7 +2,7 @@
 //  assemble.c
 //  06
 //
-//  Created by Chandra Adhikari on 4/13/20.
+//  Created by Chandra Adhikari and Naomi Geffken on 4/13/20.
 //  Copyright © 2020 Chandra Adhikari. All rights reserved.
 //
 #include <stdio.h>
@@ -12,20 +12,16 @@
 
 /*
 //read a string and produce another string
-
-
 //parse.c does this
 //"M=M+1" ;JMP--> "1000101010101010"
 //dest="M"
 // comp="M+1"
 // jump="JMP"
-
 //code.c does this:
 //M ----> "101"  just an example    char* dest(char*)--> void dest(char* dest, char* src)
 //M+1"--> "1010101'
 //JMP---> "111'
 //"111"+"101"+"1010101"
-
 */
 
 
@@ -140,10 +136,8 @@ void initSymbolMap(){
     insertKey(symbolMap, "R15", "15");
     insertKey(symbolMap, "SCREEN", "16384");
     insertKey(symbolMap, "KBD", "24576");
-    "LOOP", "2";
     
     
     
 
 }
-

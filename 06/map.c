@@ -1,4 +1,3 @@
-
 // map.c
 //
 // This is a basic map data structure for key, value pairs of strings.
