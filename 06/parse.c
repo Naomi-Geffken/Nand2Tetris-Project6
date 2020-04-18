@@ -16,6 +16,18 @@ extern map destMap;
 extern map jumpMap;
 extern map compMap;
 
+void trim(char *s) {
+    char *d = s;
+    while (isspace(*s++))
+        ;
+    s--;
+    while (*d++ = *s++)
+        ;
+    d--;
+    while (isspace(*--d))
+        *d = 0;
+}
+
 int parseSymbols(char* in, int lineNumber){
     //symbolMap=createMap(1000);
     if (commandType(in)=="L_COMMAND")   //if (commandType(in)==1)
@@ -33,18 +45,23 @@ int commandType(char* in){
     char* L = "(";
     char* A = "@";
     char* C = '=';
+    printf("inside CommandType\n");
 
     if (strstr(in, L)!=NULL){
+        printf("inside L_COMMAND\n");
         return L_COMMAND;
     }
     else if (strstr(in, A)!=NULL){
+        printf("inside A_COMMAND\n");
         return A_COMMAND;
     }
-    else if (strstr(in, C)!=NULL){
+    else{
+        printf("inside C_COMMAND\n");
         return C_COMMAND;
-    } else {
-        return 0;
-    }
+    } 
+    //else {
+    //    return 0;
+    //}
 }
 
 int parseACommand(char* in){ // turn A_Command into binary representation
@@ -73,114 +90,142 @@ int parseACommand(char* in){ // turn A_Command into binary representation
 
 char parseCCommand(char* in){ // turn C_command into binary representation
     printf("inside parseCCommand! \n");
-    //C-Instruction
+    // copy *in
+    return 0;
+}
+
+// Strtok requres "" NOT ''
+char* ParseC(char* in){
+
+	printf("it works %s\n", in);
+	
+	const char jmp[] = "0;JMP";
+    const char case1[] = "0;JGT";
+    const char case2[] = "0=JGT";
+	const char equals = '=';
+	const char semi =';';
+	char *ret;
+	char *ret1;
+	char *ret2;
+	char *comp;
+	char *dest;
+	
+	char str_copy[225];
+	strcpy(str_copy, in);
     char DEST[255];
     char COMP[255];
     char JUMP[255];
+	
+	if(strstr(str_copy, "=")!=NULL){ // there is an =
+		//printf("this is strcopy: %s\n", str_copy);
+		//printf("this is str: %s\n", in);
+		dest = strcpy(str_copy, in);
+		strtok(dest, "=");
+		
+		
+        printf("dest is .%s.\n", dest);
+		strcpy(DEST, lookupKey(destMap, dest));
+        printf("DEST is %s\n", DEST);
+		strcpy(str_copy, in);
+        printf("DEST is %s\n", DEST);
+		if(strstr(str_copy, ";")!=NULL){ // case 1: both equals and semi
+			printf("case2\n");
+			ret1 = strchr(str_copy, equals);
+			comp = strtok(ret1,";");
+			printf("comp is %s\n", comp+1);
+            strcpy(COMP, lookupKey(compMap, comp+1));
+            printf("COMP is %s\n", COMP);
+			printf("this is strcopy: %s\n", str_copy);
+			printf("this is str: %s\n", in);
+			strcpy(str_copy, in);	
+			ret = strchr(str_copy, semi);
+			printf("jump is %s\n", ret+1);
+			strcpy(JUMP, lookupKey(jumpMap, ret+1));
+            printf("JMP is %s\n", JUMP);
+            printf("this is strcopy: %s\n", str_copy);
+			printf("this is str: %s\n", in);
+           
+		}
+		else{ //case 2: just equals
+			printf("hey, there, there isn't a semi colon\n");
+			ret1 = strchr(str_copy, equals);
+			printf("comp: %s\n", ret1+1);
+            strcpy(COMP, lookupKey(compMap, ret1+1));
+            printf("COMP is %s\n", COMP);
+            strcpy(JUMP, lookupKey(jumpMap, "null"));
+            printf("JMP is %s\n", JUMP);
 
-    char temp1[255];
-    for (int i = 2; i < strlen(in); i++) {
-        temp1[i-2] = in[i];
-    }
-    printf("STILL inside parseCCommand! \n");
-    if (in[1] == "=") {        //algorithim for reading after =
-        strcpy(DEST, lookupKey(destMap, in[0]));
-        strcpy(COMP, lookupKey(compMap, temp1));
-        strcpy(JUMP, lookupKey(jumpMap, "null"));
-        printf("inside if statement in parseCCommand! \n");
-        char str[100];
-        strcat(str,"111");
-        strcat(str,DEST);
-        strcat(str,COMP);
-        strcat(str,JUMP);
-        return str;
-
-        //DEST = lookupKey(destmap, temp[0]);
-        //COMP = lookupKey(compmap, temp1);
-        //JUMP = lookupKey(jumpmap, "null");
-        //return itoa("111" + COMP + DEST + JUMP);
-        //sprintf()
-    } else {  //algorithim for reading after ;
-        printf("inside else statement in parseCCommand! \n");
-        //DEST = lookupKey(destmap, "null");
-        //COMP = lookupKey(compmap, temp[0]);
-        //JUMP = lookupKey(jumpmap, temp1);
-        char src[40];
-        char dest[100];
-  
-        // memset(dest, '\0', sizeof(dest));
-        strcpy(src, "This is tutorialspoint.com");
-        strcpy(dest, src);
-
-        printf("Final copied string : %s\n", temp1);
-        // strcpy(DEST, lookupKey(destMap, "null"));
-        // strcpy(COMP, lookupKey(compMap, in[0]));
-        strcpy(COMP, lookupKey(compMap, "D"));
-        printf("inside else statement, after strcopy in parseCCommand! \n");
-        char str[100];
-        strcat(str,"111");
-        strcat(str,DEST);
-        strcat(str,COMP);
-        strcat(str,JUMP);
-        printf("this is our string: %s\n", str);
-        return str;
-    }
+		}
+	}
+	else if(strstr(in, ";")!=NULL){ // case 3: just semi
+		printf("case 3\n");
+        strcpy(DEST, lookupKey(destMap, "null"));
+        printf("DEST is %s\n", DEST);
+		comp = strcpy(str_copy, in);
+		strtok(comp, ";");
+		printf("comp is %s\n", comp);
+        strcpy(COMP, lookupKey(compMap, comp));
+        printf("COMP is %s\n", COMP);
+		strcpy(str_copy, in);
+		
+		strcpy(str_copy, in);	
+		ret = strchr(str_copy, semi);
+		printf("jump is %s\n", ret+1);
+        strcpy(JUMP, lookupKey(jumpMap, ret+1));
+        printf("JMP is %s\n", JUMP);
+		
+		
+	}
+    // Append!
+    char* C_Binary[100];
+    C_Binary[0]='\0';
+    strcat(C_Binary,"111"); // Append 111
     
-    //char** temp_in = in;
-    //char* jmp;
-    //const char semi = ";";
-    //jmp = strchr(in, semi);
-    //int count = 0
-    //while(!isspace(jmp)){
-    //    count++;
-    //}
-    //char* JMP;
-    //JMP = lookupKey(jumpMap, jmp+count);
-    // opcode + 00
-    // break in into 2-3 parts
-    // break into dest
-
-
-    // break into comp
-    // break into jump
-
-    // call code.c corresponding binary
-    // return binary
-   //  char *str = in;
-   // int init_size = strlen(str);
-    //char delim[] = {"=",";"};
-
-   // char *ptr = strtok(str, delim);
-
-   // while(ptr != NULL)
-   // {
-   //     ptr = strtok(NULL, delim);
-   // }
-
-   // dest();
-   // printf("\n");
-
-   // return 0;
+    strcat(C_Binary,COMP); // Append comp
+    strcat(C_Binary,DEST); // Append DEST
+    strcat(C_Binary,JUMP); // Append JUMP
+    printf("our binary is: %s\n", C_Binary);
+    //int val;
+    //val=atoi(C_Binary);
+    //printf("our binary is: %d", C_Binary);
+    //return C_Binary;
+    //char* out1;
+    //out1= C_Binary;
+    //in=out1;
+    char* final_answer;
+    final_answer=C_Binary;
+    return final_answer;
+    //printf("in is: %s\n",in);
+    // return in;
+	//return 0;	
 }
+  
+
 
 int parseLCommand(char*in){ // turn into binary representation
    return 0;
 }
 
 int parseLine(char* in, char* out){  // (lineRaw, lineBinary)
-    if (commandType(in)== L_COMMAND){
-       out= parseLCommand(in);
-       return out;
-    }
-    else if(commandType(in)== A_COMMAND){
-        out=parseACommand(in);
+    //if (commandType(in)== L_COMMAND){
+    //   out= parseLCommand(in);
+    //   return out;
+    //}
+    printf("inside ParseLine\n");
+    if(commandType(in) == A_COMMAND){
+        printf("in is an A_COMMAND\n");
+        //out=parseACommand(in);
         return out;
     }
     else if (commandType(in)==C_COMMAND){
-        out=parseCCommand(in);
-        return out;
+        printf("in is a C_COMMAND\n");
+        //char* outforC = "this";
+        out = ParseC(in);
+        printf("out is: %s\n", out);
+        return 1;
     }
     else{
+        printf("in is something else entirely\n");
         return 0;
     }//empty lines, comments, etc
 }

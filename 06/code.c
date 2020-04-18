@@ -68,53 +68,40 @@ void initJumpMap(){
 
 
 void initCompMap(){
-    printf("insideCompMap");
-    insertKey(compMap, "0", "101010");
-    insertKey(compMap, "1", "111111");
-    insertKey(compMap, "-1", "111010");
-    insertKey(compMap, "D", "001100");
-    insertKey(compMap, "A", "110000");
-    insertKey(compMap, "!D", "001101");
-       
-    insertKey(compMap, "M", "110000");
-    insertKey(compMap, "!A", "110001");
-    insertKey(compMap, "!M", "110001");
-       
-    insertKey(compMap, "-D", "001111");
-    insertKey(compMap, "-A", "110011");
-    insertKey(compMap, "-M", "110011");
-       
-    insertKey(compMap, "D+1", "011111");
-    insertKey(compMap, "A+1", "110111");
-    insertKey(compMap, "M+1", "110111");
-       
-    insertKey(compMap, "D-1", "001110");
-    insertKey(compMap, "A-1", "110010");
-    insertKey(compMap, "M-1", "110010");
-    
-       insertKey(compMap, "D+A", "000010");
-          insertKey(compMap, "D+M", "000010");
-          insertKey(compMap, "D-A", "010011");
-          
-       insertKey(compMap, "D-M", "010011");
-          insertKey(compMap, "A-D", "000111");
-          insertKey(compMap, "M-D", "000111");
-          
-       insertKey(compMap, "D&A", "000000");
-          insertKey(compMap, "D&M", "000000");
-          insertKey(compMap, "D|A", "010101");
-          
-       insertKey(compMap, "D|M", "010101");
-        
-       
-    
-
-
+    insertKey(compMap, "0", "0101010");
+    insertKey(compMap, "1", "0111111");
+    insertKey(compMap, "-1", "0111010");
+    insertKey(compMap, "D", "0001100");
+    insertKey(compMap, "A", "0110000");
+    insertKey(compMap, "!D", "0001101");
+    insertKey(compMap, "!A", "0110001");
+    insertKey(compMap, "-D", "0001111");
+    insertKey(compMap, "-A", "0110011");
+    insertKey(compMap, "D+1", "0011111");
+    insertKey(compMap, "A+1", "0110111");
+    insertKey(compMap, "D-1", "0001110");
+    insertKey(compMap, "A-1", "0110010");
+    insertKey(compMap, "D+A", "0000010");
+    insertKey(compMap, "D-A", "0010011");
+    insertKey(compMap, "A-D", "0000111");
+    insertKey(compMap, "D&A", "0000000");
+    insertKey(compMap, "D|A", "0010101");
+    // a = 1
+    insertKey(compMap, "M", "1110000");
+    insertKey(compMap, "!M", "1110001");
+    insertKey(compMap, "-M", "1110011");
+    insertKey(compMap, "M+1", "1110111");
+    insertKey(compMap, "M-1", "1110010");
+    insertKey(compMap, "D+M", "1000010");
+    insertKey(compMap, "D-M", "1010011");
+    insertKey(compMap, "M-D", "1000111");
+    insertKey(compMap, "D&M", "1000000");
+    insertKey(compMap, "D|M", "1010101");
 }
 
 
 void initDestMap(){
-   insertKey(destMap, "null", "000");
+    insertKey(destMap, "null", "000");
     insertKey(destMap, "M", "001");
     insertKey(destMap, "D", "010");
     insertKey(destMap, "MD", "011");

@@ -30,6 +30,8 @@ void initJumpMap();
 void initCompMap();
 void initDestMap();
 int containsKey(map aMap, char *searchKey);
+void trim(char*);
+int ParseC(char* in);
 
 int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     
@@ -50,17 +52,18 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     initCompMap();
     initDestMap();
 
-    printf("inside file");
-    // Test C Command
-    char* f = "M=D";
-    // int d = 0;
-    // d = containsKey(compMap, f);
-    char out3;
-    out3 = parseCCommand(f);
-    printf("this is our looked up key: %s", out3);
+    const char str[] = "0;JMP";
+    char outC[255];
+    
+    //outC=ParseC(str);
+    //parseLine(str,outC);
+
+    //printf("outC is: %s", outC);
+
+    parseLine(str,outC);
     //first step is to go into a file, and create a symbol table of that file
-    fputs(out3, outFile); //maybe I need to add '\0' at the end of the line??
-    fputs("\0",outFile);
+    //fputs(out3, outFile); //maybe I need to add '\0' at the end of the line??
+    //fputs("\0",outFile);
     
     char lineRaw[200]; //assumptions that the line we read is less than 200 characters
     //has a new line
@@ -69,7 +72,9 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     char lineBinary[17];
     
     fgets(lineRaw, 200, inFile);//reads one strings from a file ;  output destination with the maximum value, and inputfile
-    
+    printf("lineRaw: [%s]", lineRaw);
+    trim(lineRaw);
+    printf("lineRaw: [%s]", lineRaw);
     
     int LineNumber=0 ;   //line number associates to that label
     
@@ -90,7 +95,7 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
          if(parseLine(lineRaw, lineBinary)){ //lineRaw= " M+1
          //--->101001010000// binary equivalent    }
          fputs(lineBinary, outFile); //maybe I need to add '\0' at the end of the line??
-         fputs("\0",outFile);
+         fputs('\0',outFile);
          }
          else continue;
          //second pass
