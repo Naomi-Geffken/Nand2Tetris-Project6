@@ -55,14 +55,14 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     initSymbolMap();
 
 
-    const char str[] = "@32767";
+    // const char str[] = "@32767";
     
     //outC[0]='\n';
     //outC=ParseC(str);
     
     
-    char* out=parseLine(str,str);
-    printf("outC is: %s\n", out);
+    // char* out=parseLine(str,str);
+    // printf("outC is: %s\n", out);
     //first step is to go into a file, and create a symbol table of that file
     //fputs(out3, outFile); //maybe I need to add '\0' at the end of the line??
     //fputs("\0",outFile);
@@ -91,8 +91,11 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
             // if C or A instruction, increment LineNumber
             strtok(lineRaw, "//");
             trim(lineRaw);
+            parseSymbols(lineRaw, LineNumber);
+
             fgets(lineRaw, 200, inFile);
             trim(lineRaw);
+
         }
         //make the first pass and find all labels.
         //parseSymbols(lineRaw, LineNumber); // put the label in the symbolsdMap wih line number

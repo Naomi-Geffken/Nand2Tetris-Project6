@@ -76,13 +76,22 @@ int parseACommand(char* in){ // turn A_Command into binary representation
     }
     else{  // otherwise: call atoi on ret+1
         for(int i=0; i<strlen(ret+1); i++){
-            if(isalpha((ret+1)[i])!=0){ //case 2 symbol not yet seen
+            if(containsKey(symbolMap, ret+1)!=-1){
+                break;
+            }
+            else if(isalpha((ret+1)[i])!=0){ //case 2 symbol not yet seen
                 printf("symbol is not there yet\n");
-                insertKey(symbolMap, ret+1, count);
+                strcpy(VAL, ret+1);
+                char num[200];
+                sprintf(num, "%d",count);
+                printf("Val is: %s; ret+1 is: %s", VAL, ret+1);
+                insertKey(symbolMap, ret+1, num);
                 
                 val= count;
                 count++;
+                printf("val is %d and count is %d\n", val, count);
                 printf("inside else statement\n");
+                break;
             }
         }
         
@@ -266,11 +275,19 @@ char *parseLine(char* in, char* out){  // (lineRaw, lineBinary)
 
 int parseSymbols(char* in, int lineNumber){
     //symbolMap=createMap(1000);
-    if (commandType(in)!="L_COMMAND")   //if (commandType(in)==1)
+    printf("inside parseSymbols\n");
+    if (commandType(in)!=L_COMMAND) {  //if (commandType(in)==1)
+        printf("command is not L\n");
         return lineNumber+1;
-    else{  //command is a label
-        insertKey(symbolMap, in, lineNumber);
-
     }
-        return 0;
+    else{  //command is a label
+        printf("in parse symbols, command is L: %s\n",in);
+        strstr(in, "(");
+        printf("in parse symbols, should now NOT have '(': %s\n",in+1);
+        strtok(in+1, ")");
+        printf("in parse symbols, should now NOT have ')': %s\n",in+1);
+        printf("linenumber is %d", lineNumber);
+        insertKey(symbolMap, in+1, lineNumber);
+        return lineNumber;
+    }
 }

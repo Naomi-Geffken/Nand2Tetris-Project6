@@ -1,3 +1,10 @@
+# This is the Makefile for main.c, IntQueue.c and IntQueue.h
+# To use it, put it in the same directory as those three files.
+# To compile, simply type "make" at the command line.
+# To remove all object code, type "make clean" (this removes
+# all ".o" and ".a" files)
+
+# Executable file "exec" depends on main.o and IntQueue.o
 exec: assembler.o code.o map.o parse.o
 	gcc -o exec assembler.o code.o map.o parse.o
 
@@ -10,3 +17,9 @@ code.o: code.c
 parse.o: parse.c
 	gcc -c parse.c
 
+map.o: map.c
+	gcc -c map.c
+
+clean:
+	rm -f *~ *.o *.a
+#^^^This space must be a TAB!!

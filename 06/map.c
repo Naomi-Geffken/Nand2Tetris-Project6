@@ -122,7 +122,7 @@ char* lookupKey(map aMap, char *searchKey) {
         return lookupIndex(aMap, index);
     } else {
         // printf("inside lookupKey: in else-statement \n");
-        return NULL;
+        return NULLL
     }
     // printf("inside lookupKey: end of method \n");
 }
@@ -133,6 +133,7 @@ char* lookupKey(map aMap, char *searchKey) {
 // insertKey
 // Inserts a key into a map
 int insertKey(map aMap, char* key, char *value) {
+    printf("inside insertKey, key is %s and val is %s\n", key, value);
     if(aMap->mapSize < aMap->maxSize) {
 
         aMap->pairs[aMap->mapSize].key = (char *) malloc(STR_LENGTH * sizeof(char));

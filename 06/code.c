@@ -140,6 +140,7 @@ void initSymbolMap(){
     insertKey(symbolMap, "R15", "15");
     insertKey(symbolMap, "SCREEN", "16384");
     insertKey(symbolMap, "KBD", "24576");
+    "LOOP", "2";
     
     
     
