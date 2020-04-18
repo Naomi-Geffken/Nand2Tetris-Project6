@@ -286,8 +286,10 @@ int parseSymbols(char* in, int lineNumber){
         printf("in parse symbols, should now NOT have '(': %s\n",in+1);
         strtok(in+1, ")");
         printf("in parse symbols, should now NOT have ')': %s\n",in+1);
+        char insertNum[200];
+        sprintf(insertNum, "%d",lineNumber);
         printf("linenumber is %d", lineNumber);
-        insertKey(symbolMap, in+1, lineNumber);
+        insertKey(symbolMap, in+1, insertNum);
         return lineNumber;
     }
 }

@@ -122,7 +122,7 @@ char* lookupKey(map aMap, char *searchKey) {
         return lookupIndex(aMap, index);
     } else {
         // printf("inside lookupKey: in else-statement \n");
-        return NULLL
+        return NULL;
     }
     // printf("inside lookupKey: end of method \n");
 }
