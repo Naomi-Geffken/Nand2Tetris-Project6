@@ -45,7 +45,7 @@ int commandType(char* in){
     char* L = "(";
     char* A = "@";
     char* C = '=';
-    printf("inside CommandType\n");
+    printf("inside CommandType and in is: %s\n", in);
 
     if (strstr(in, L)!=NULL){
         printf("inside L_COMMAND\n");
@@ -67,25 +67,44 @@ int commandType(char* in){
 int parseACommand(char* in){ // turn A_Command into binary representation
     // Isolate everythin after @ symbol
     // const char str[] = "chandra@21";
-   const char ch = '@';
-   char *ret;
-   int binary;
-   int bin_A=0;
-   int i = 0;
+    printf("inside A command\n");
+    // get rid of '@'
+    const char ch = '@';
+    char *ret;
+    ret = strchr(in, ch);
 
-   ret = strchr(in, ch);
-   char **ret2 = (ret + 1);
-   int val = atoi(ret +1);
-   // printf("String after |%c| is - |%s|\n", ch, (ret2));
+    // [to add: check if ret+1 is in symbol table]
+    // if yes: return value, and call atoi on that value
+    // otherwise: call atoi on ret+1
+  
+    int val;
+    val= atoi(ret+1); 
 
-   // convert val to binary and return val.
-   while (val > 0){
-        binary = val % 2;
-        bin_A += binary * pow(10, i);
-        val = val / 2;
-        i++;
-   }
-    return bin_A;
+    int c, d, count;
+    char *pointer;
+   
+    count = 0;
+    pointer = (char*)malloc(16+1);
+    // add opcode
+    *(pointer+count) = 0 + '0';
+    count++;
+    //compute binary
+    for (c = 14 ; c >= 0 ; c--)
+    {
+      d = val >> c;
+     
+      if (d & 1){
+         *(pointer+count) = 1 + '0';
+         }
+      else
+         *(pointer+count) = 0 + '0';
+     
+      count++;
+      printf("pointer is: %s\n", pointer);
+    }
+    *(pointer+count) = '\0';
+   
+    return  pointer;
 }
 
 char parseCCommand(char* in){ // turn C_command into binary representation
@@ -95,7 +114,7 @@ char parseCCommand(char* in){ // turn C_command into binary representation
 }
 
 // Strtok requres "" NOT ''
-char* ParseC(char* in){
+char *ParseC(char* in){
 
 	printf("it works %s\n", in);
 	
@@ -177,7 +196,7 @@ char* ParseC(char* in){
 		
 	}
     // Append!
-    char* C_Binary[100];
+    char *C_Binary[255];
     C_Binary[0]='\0';
     strcat(C_Binary,"111"); // Append 111
     
@@ -192,8 +211,9 @@ char* ParseC(char* in){
     //char* out1;
     //out1= C_Binary;
     //in=out1;
-    char* final_answer;
-    final_answer=C_Binary;
+    char* final_answer[255];
+    strcpy(final_answer, C_Binary);
+    
     return final_answer;
     //printf("in is: %s\n",in);
     // return in;
@@ -206,7 +226,7 @@ int parseLCommand(char*in){ // turn into binary representation
    return 0;
 }
 
-int parseLine(char* in, char* out){  // (lineRaw, lineBinary)
+char *parseLine(char* in, char* out){  // (lineRaw, lineBinary)
     //if (commandType(in)== L_COMMAND){
     //   out= parseLCommand(in);
     //   return out;
@@ -214,15 +234,17 @@ int parseLine(char* in, char* out){  // (lineRaw, lineBinary)
     printf("inside ParseLine\n");
     if(commandType(in) == A_COMMAND){
         printf("in is an A_COMMAND\n");
-        //out=parseACommand(in);
-        return out;
+        return parseACommand(in);
+        //return out;
     }
     else if (commandType(in)==C_COMMAND){
         printf("in is a C_COMMAND\n");
         //char* outforC = "this";
-        out = ParseC(in);
-        printf("out is: %s\n", out);
-        return 1;
+        //char* output[255] = out;
+        //output = '\0';
+        return ParseC(in);
+        //printf("out is: %s\n", output);
+        //return output;
     }
     else{
         printf("in is something else entirely\n");
