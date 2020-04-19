@@ -33,16 +33,15 @@ void initSymbolMap();
 int containsKey(map aMap, char *searchKey);
 void trim(char*);
 int ParseC(char* in);
+int commandType(char* in);
 
 int main(int argc, const char **argv) {    //./assembler add.asm add.hack
-    
     
     const char* inF=argv[1];
     const char* outF=argv[2];
     
     FILE * inFile= fopen(inF, "r"); //creating a input file in a read mode
     FILE * outFile= fopen(outF, "w+"); //creating a output file and write there
-
     
     destMap=createMap(10);
     compMap=createMap(30); //new maps and no value inside it
@@ -53,7 +52,6 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     initCompMap();
     initDestMap();
     initSymbolMap();
-
 
     // const char str[] = "@32767";
     
@@ -80,9 +78,9 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     trim(lineRaw);
     while(!feof(inFile)){ //feof gives the end of end file
         //printf("lineRaw: [%s]\n", lineRaw);
-       // printf("lineRaw: [%s]\n", lineRaw);
+        // printf("lineRaw: [%s]\n", lineRaw);
         if(lineRaw[0]=='/'||lineRaw[0]=='\0'){
-           // printf("help\n");
+            // printf("help\n");
             fgets(lineRaw, 200, inFile);
             trim(lineRaw);
         }
@@ -91,17 +89,16 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
             // if C or A instruction, increment LineNumber
             strtok(lineRaw, "//");
             trim(lineRaw);
-            parseSymbols(lineRaw, LineNumber);
+            LineNumber=parseSymbols(lineRaw, LineNumber);
 
             fgets(lineRaw, 200, inFile);
             trim(lineRaw);
-
         }
         //make the first pass and find all labels.
         //parseSymbols(lineRaw, LineNumber); // put the label in the symbolsdMap wih line number
         //if C or A instruction, increment LineNumber
         //fgets(lineRaw, 200, inFile);
-    } //done with the first pass;
+    }   //done with the first pass;
     //at the end of inFile
     
     fseek(inFile,0, SEEK_SET);
@@ -109,7 +106,10 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     
     fgets(lineRaw, 200, inFile);//reads one strings from a file ;  output destination with the maximum value, and inputfile
     trim(lineRaw);
+
+    
     while(!feof(inFile)){ //feof gives the end of end file
+        //printf("inside assembler, nextLineRaw is: %s\n", lineRaw);
         //printf("lineRaw: [%s]\n", lineRaw);
         //printf("lineRaw: [%s]\n", lineRaw);
         if(lineRaw[0]=='/'||lineRaw[0]=='\0'){
@@ -120,9 +120,13 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
         else{
             strtok(lineRaw, "//");
             trim(lineRaw);
+            // printf("inside assembler, current LineRaw is: %s\n", lineRaw);
             char* binary_out=parseLine(lineRaw, lineBinary); //lineRaw= " M+1
             //printf("binary_out is: %s\n", binary_out);
-            fprintf(outFile,"%s\n",binary_out);
+            fprintf(outFile,"%s",binary_out);
+            if(commandType(lineRaw)!=1){
+                fprintf(outFile,"\n",binary_out);
+            }
 
             //fputs(binary_out, outFile); //maybe I need to add '\0' at the end of the line??
             //fputs('\0',outFile);
@@ -144,8 +148,7 @@ int main(int argc, const char **argv) {    //./assembler add.asm add.hack
     //}
     fclose(inFile);
     fclose(outFile);
-    
-    
+        
     freeMap(compMap);
     freeMap(jumpMap);
     // freeMap(symbolMap);

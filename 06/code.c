@@ -34,8 +34,6 @@ extern map symbolMap;
 
 void dest (char* in, char* out){
    out= lookupKey(destMap, in); //out=get(in)
-
-
 }
 
 void comp (char* in, char* out){
@@ -44,9 +42,6 @@ void comp (char* in, char* out){
 
 void jump (char* in, char* out){
     out= lookupKey(jumpMap, in);
-    //where the jump part is actually in
-    //look for ;
-    //create a string of size 3
 }
 
 void initJumpMap(){
@@ -58,7 +53,6 @@ void initJumpMap(){
     insertKey(jumpMap, "JNE", "101");
     insertKey(jumpMap, "JLE", "110");
     insertKey(jumpMap, "JMP", "111");
-
 }
 
 
@@ -105,14 +99,10 @@ void initDestMap(){
     insertKey(destMap, "AM", "101");
     insertKey(destMap, "AD", "110");
     insertKey(destMap, "AMD", "111");
-
-
 }
 
 
-void initSymbolMap(){
-
-  
+void initSymbolMap(){ 
     insertKey(symbolMap, "SP", "0");
     insertKey(symbolMap, "LCL", "1");
     insertKey(symbolMap, "ARG", "2");
@@ -136,8 +126,4 @@ void initSymbolMap(){
     insertKey(symbolMap, "R15", "15");
     insertKey(symbolMap, "SCREEN", "16384");
     insertKey(symbolMap, "KBD", "24576");
-    
-    
-    
-
 }

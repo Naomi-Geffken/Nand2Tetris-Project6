@@ -19,7 +19,6 @@
 #include "map.h"
 
 
-
 // Allocates a map data structure and an array of key,value pairs
 // up to the max size provided.
 //
@@ -45,7 +44,6 @@ map createMap(int maxSize) {
     return newmap;
 }
 
-
 // freeMap
 // Frees the memory allocated by createMap
 // Also frees any strings allocated within insertKey
@@ -56,7 +54,6 @@ void freeMap(map currentMap) {
     }
 
     int i;
-
 
     // delete any strings stored within the map
     // CAUTION: Any strings copied by pointer will be destroyed!
@@ -73,9 +70,7 @@ void freeMap(map currentMap) {
 
     // delete the map itself
     free(currentMap);
-
 }
-
 
 // containsKey method
 // If the key is found, returns its index
@@ -98,7 +93,6 @@ int containsKey(map aMap, char *searchKey) {
     return -1;
 }
 
-
 // lookupIndex method
 // lookupIndex is intended to be used with the containsKey method.
 // If an index is already known, the value can be returned directly without
@@ -106,7 +100,6 @@ int containsKey(map aMap, char *searchKey) {
 char* lookupIndex(map aMap, int i) {
     return aMap->pairs[i].value;
 }
-
 
 // lookupKey
 // If the key is found, returns the associated value string
@@ -126,13 +119,9 @@ char* lookupKey(map aMap, char *searchKey) {
     // printf("inside lookupKey: end of method \n");
 }
 
-
-
-
 // insertKey
 // Inserts a key into a map
 int insertKey(map aMap, char* key, char *value) {
-    printf("inside insertKey, key is %s and val is %s\n", key, value);
     if(aMap->mapSize < aMap->maxSize) {
 
         aMap->pairs[aMap->mapSize].key = (char *) malloc(STR_LENGTH * sizeof(char));
@@ -143,12 +132,6 @@ int insertKey(map aMap, char* key, char *value) {
 
         return 1;
     }
-
     fprintf(stderr, "Warning: map full, last insert failed!\n");
     return 0;
-
-
-
-
-
 }
