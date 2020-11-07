@@ -22,4 +22,4 @@ map.o: map.c
 
 clean:
 	rm -f *~ *.o *.a
-#^^^This space must be a TAB!!
+#^^^This space must be a TAB!!.
